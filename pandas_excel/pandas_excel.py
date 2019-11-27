@@ -7,6 +7,7 @@ import pandas as pd
 
 # 读取excel
 data = pd.read_excel(r'example.xlsx', sheet_name='Sheet1')
+print(type(data))
 # 去除“序号”
 data = data[['姓名', '性别', '年龄', '身高', '体重']]
 # 或者如下语句也可去除“序号”
