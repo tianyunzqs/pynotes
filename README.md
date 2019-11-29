@@ -4,4 +4,4 @@
 | pandas读取excel | [https://github.com/tianyunzqs/pynotes/tree/master/pandas_excel](https://github.com/tianyunzqs/pynotes/tree/master/pandas_excel) |
 | 编辑距离 | [https://github.com/tianyunzqs/pynotes/tree/master/edit_distance](https://github.com/tianyunzqs/pynotes/tree/master/edit_distance) |
 | 两日期间隔天数 | [https://github.com/tianyunzqs/pynotes/tree/master/iterval_days](https://github.com/tianyunzqs/pynotes/tree/master/interval_days) |
-
+| 全角字符转半角字符 | [https://github.com/tianyunzqs/pynotes/tree/master/string_full2half](https://github.com/tianyunzqs/pynotes/tree/master/string_full2half) |
