@@ -9,3 +9,4 @@
 | 全角字符转半角字符 | [https://github.com/tianyunzqs/pynotes/tree/master/string_full2half](https://github.com/tianyunzqs/pynotes/tree/master/string_full2half) |
 | 计算函数运行时间 | [https://github.com/tianyunzqs/pynotes/tree/master/run_time](https://github.com/tianyunzqs/pynotes/tree/master/run_time) |
 | 文本差异性比较 | [https://github.com/tianyunzqs/pynotes/tree/master/text_diff](https://github.com/tianyunzqs/pynotes/tree/master/text_diff) |
+| 列表差异性比较 | [https://github.com/tianyunzqs/pynotes/tree/master/list_diff](https://github.com/tianyunzqs/pynotes/tree/master/list_diff) |
