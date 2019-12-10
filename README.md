@@ -3,7 +3,7 @@
 
 | 模块名称 | 地址 |
 | :----: | :----: |
-| pandas读取excel | [https://github.com/tianyunzqs/pynotes/tree/master/pandas_excel](https://github.com/tianyunzqs/pynotes/tree/master/pandas_excel) |
+| pandas读写excel | [https://github.com/tianyunzqs/pynotes/tree/master/pandas_excel](https://github.com/tianyunzqs/pynotes/tree/master/pandas_excel) |
 | 编辑距离 | [https://github.com/tianyunzqs/pynotes/tree/master/edit_distance](https://github.com/tianyunzqs/pynotes/tree/master/edit_distance) |
 | 两日期间隔天数 | [https://github.com/tianyunzqs/pynotes/tree/master/iterval_days](https://github.com/tianyunzqs/pynotes/tree/master/interval_days) |
 | 全角字符转半角字符 | [https://github.com/tianyunzqs/pynotes/tree/master/string_full2half](https://github.com/tianyunzqs/pynotes/tree/master/string_full2half) |
@@ -11,3 +11,4 @@
 | 文本差异性比较 | [https://github.com/tianyunzqs/pynotes/tree/master/text_diff](https://github.com/tianyunzqs/pynotes/tree/master/text_diff) |
 | 列表差异性比较 | [https://github.com/tianyunzqs/pynotes/tree/master/list_diff](https://github.com/tianyunzqs/pynotes/tree/master/list_diff) |
 | 字典树 | [https://github.com/tianyunzqs/pynotes/tree/master/dict_tree](https://github.com/tianyunzqs/pynotes/tree/master/dict_tree) |
+| 简繁体互转 | [https://github.com/tianyunzqs/pynotes/tree/master/traditional_simplified](https://github.com/tianyunzqs/pynotes/tree/master/traditional_simplified) |
