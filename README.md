@@ -12,3 +12,4 @@
 | 列表差异性比较 | [https://github.com/tianyunzqs/pynotes/tree/master/list_diff](https://github.com/tianyunzqs/pynotes/tree/master/list_diff) |
 | 字典树 | [https://github.com/tianyunzqs/pynotes/tree/master/dict_tree](https://github.com/tianyunzqs/pynotes/tree/master/dict_tree) |
 | 简繁体互转 | [https://github.com/tianyunzqs/pynotes/tree/master/traditional_simplified](https://github.com/tianyunzqs/pynotes/tree/master/traditional_simplified) |
+| 日志模块 | [https://github.com/tianyunzqs/pynotes/tree/master/python_logger](https://github.com/tianyunzqs/pynotes/tree/master/python_logger) |
