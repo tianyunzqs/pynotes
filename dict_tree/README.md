@@ -35,4 +35,8 @@ print(tree)
 print(print_trie_words(tree))
 # {'木': {'工': {'钻': {'': ''}}}, '手': {'摇': {'钻': {'': ''}}, '电': {'钻': {'子': {'': ''}}}}, '冲': {'击': {'钻': {'': ''}}}}
 # ['木工钻', '手摇钻', '手电钻子', '冲击钻']
+
+word_value = get_word_from_trie('电钻', tree, default='未找到该词')
+print(word_value)
+# 未找到该词
 ```

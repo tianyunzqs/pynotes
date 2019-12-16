@@ -44,6 +44,26 @@ def is_word_in_trie(word, trie):
         return False
 
 
+def get_word_from_trie(word, trie, default=None):
+    """
+    获取word在词典树trie中所对应的值，如果不存在，则返回default
+    :param word: 待判定的词
+    :param trie: 词典树
+    :param default: 默认返回值
+    :return: 在，返回True；不在，返回False
+    """
+    p = trie
+    for w in word:
+        if w not in p:
+            return default
+        else:
+            p = p[w]
+    if "" in p:
+        return p[""]
+    else:
+        return default
+
+
 def add_word_to_trie(word, trie):
     """
     新增词语到字典树中
@@ -124,3 +144,5 @@ if __name__ == '__main__':
     delete_word_from_trie('电钻', tree)
     print(tree)
     print(print_trie_words(tree))
+    word_value = get_word_from_trie('电钻', tree, default='未找到该词')
+    print(word_value)
