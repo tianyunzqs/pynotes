@@ -3,6 +3,8 @@
 # @Author      : tianyunzqs
 # @Description : 字典树
 
+import copy
+
 
 def gen_trie(path):
     """
@@ -50,7 +52,7 @@ def get_word_from_trie(word, trie, default=None):
     :param word: 待判定的词
     :param trie: 词典树
     :param default: 默认返回值
-    :return: 在，返回True；不在，返回False
+    :return: 在，返回对应的值；不在，返回default
     """
     p = trie
     for w in word:
@@ -62,6 +64,26 @@ def get_word_from_trie(word, trie, default=None):
         return p[""]
     else:
         return default
+
+
+def set_word_value_in_trie(word, trie, value):
+    """
+    设置word在词典树trie中所对应的值，如果不存在，则无修改
+    :param word: 待判定的词
+    :param trie: 词典树
+    :param value: 设置值
+    :return:
+    """
+    p = trie
+    for w in word:
+        if w not in p:
+            return
+        else:
+            p = p[w]
+    if "" in p:
+        p[""] = value
+    else:
+        return
 
 
 def add_word_to_trie(word, trie):
@@ -109,6 +131,26 @@ def delete_word_from_trie(word, trie):
         return
 
 
+def two_trie_combine(trie1, trie2):
+    """
+    将两个字典树trie1和trie2进行合并，并返回合并后的字典树
+    :param trie1: 字典树
+    :param trie2: 字典树
+    :return: 合并后的字典树
+    """
+    def fun(trie, s, trie12):
+        if isinstance(trie, dict):
+            for k, v in trie.items():
+                fun(v, s + k, trie12)
+        elif isinstance(trie, str):
+            add_word_to_trie(s, trie12)
+            return trie
+
+    trie_combine = copy.deepcopy(trie1)
+    fun(trie2, '', trie_combine)
+    return trie_combine
+
+
 def print_trie_words(trie):
     """
     输出字典树中所有词语
@@ -119,7 +161,7 @@ def print_trie_words(trie):
         if isinstance(trie, dict):
             for k, v in trie.items():
                 fun(v, s + k)
-        elif isinstance(trie, str):
+        else:
             res.append(s)
             return trie
 
@@ -132,17 +174,43 @@ if __name__ == '__main__':
     tree = gen_trie('dict.txt')
     print(tree)
     print(print_trie_words(tree))
-    add_word_to_trie('电钻', tree)
-    print(tree)
-    print(print_trie_words(tree))
-    add_word_to_trie('手电钻子', tree)
-    print(tree)
-    print(print_trie_words(tree))
-    delete_word_from_trie('手电钻', tree)
-    print(tree)
-    print(print_trie_words(tree))
-    delete_word_from_trie('电钻', tree)
-    print(tree)
-    print(print_trie_words(tree))
-    word_value = get_word_from_trie('电钻', tree, default='未找到该词')
-    print(word_value)
+
+    is_contain = is_word_in_trie('电钻', tree)
+    print(is_contain)
+
+    # add_word_to_trie('电钻', tree)
+    # print(tree)
+    # print(print_trie_words(tree))
+    # add_word_to_trie('手电钻子', tree)
+    # print(tree)
+    # print(print_trie_words(tree))
+
+    # delete_word_from_trie('手电钻', tree)
+    # print(tree)
+    # print(print_trie_words(tree))
+    # delete_word_from_trie('电钻', tree)
+    # print(tree)
+    # print(print_trie_words(tree))
+
+    # word_value = get_word_from_trie('电钻', tree, default='未找到该词')
+    # print(word_value)
+
+    # set_word_value_in_trie('木工钻', tree, 123)
+    # print(tree)
+    # print(print_trie_words(tree))
+
+    # tree1 = gen_trie('dict.txt')
+    # tree2 = gen_trie('dict2.txt')
+    # print(tree1)
+    # print(print_trie_words(tree1))
+    # print(tree2)
+    # print(print_trie_words(tree2))
+    #
+    # tree_combine = two_trie_combine(tree1, tree2)
+    # print(tree_combine)
+    # print(print_trie_words(tree_combine))
+
+    # print(tree1)
+    # print(print_trie_words(tree1))
+    # print(tree2)
+    # print(print_trie_words(tree2))
