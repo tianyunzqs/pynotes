@@ -7,7 +7,12 @@ import difflib
 
 
 def text_diff(string1: str, string2: str):
-    # 获取string1和string2各自不同位置
+    """
+    比较不同部分
+    :param string1:
+    :param string2:
+    :return:
+    """
     string1_diff, string2_diff = [], []
     d = difflib.Differ()  # 创建Differ对象
     diff = list(d.compare(string1, string2))  # 采用compare方法对字符串进行比较
@@ -68,7 +73,68 @@ def text_diff(string1: str, string2: str):
     }
 
 
+def text_repeat(string1: str, string2: str, k: int = 1):
+    """
+    比较相同部分
+    :param string1:
+    :param string2:
+    :param k: 连续k个字符重复，才算重复
+    :return:
+    """
+    string1_same, string2_same = [], []
+    d = difflib.Differ()  # 创建Differ对象
+    diff = list(d.compare(string1, string2))  # 采用compare方法对字符串进行比较
+
+    tmp = [-1, -1]
+    i, diff_len = 0, len(diff)
+    idx1, idx2 = 0, 0
+    common_len = 0
+
+    while i < diff_len - 1:
+        if diff[i][0] == '-':
+            idx1 += 1
+        elif diff[i][0] == '+':
+            idx2 += 1
+        elif diff[i][0] == ' ':
+            if tmp[0] == -1:
+                tmp[0] = (idx1, idx2)
+            idx1 += 1
+            idx2 += 1
+            tmp[1] = (idx1, idx2)
+            if diff[i + 1][0] != ' ':
+                if tmp[1][0] - tmp[0][0] >= k:
+                    common_len += tmp[1][0] - tmp[0][0]
+                string1_same.append([tmp[0][0], tmp[1][0]])
+                string2_same.append([tmp[0][1], tmp[1][1]])
+                tmp = [-1, -1]
+        i += 1
+
+    if diff:
+        if diff[-1][0] == ' ':
+            if tmp[0] == -1:
+                if k <= 1:  # 这种情形只有最后一个字符相同
+                    common_len += 1
+                string1_same.append([len(string1) - 1, len(string1)])
+                string2_same.append([len(string2) - 1, len(string2)])
+            else:
+                idx1 += 1
+                idx2 += 1
+                tmp[1] = (idx1, idx2)
+                if tmp[1][0] - tmp[0][0] >= k:
+                    common_len += tmp[1][0] - tmp[0][0]
+                string1_same.append([tmp[0][0], tmp[1][0]])
+                string2_same.append([tmp[0][1], tmp[1][1]])
+
+    total_len = len(string1) + len(string2)
+    return {
+        'same1_idx': string1_same,
+        'same2_idx': string2_same,
+        'repeat_ratio': 2 * common_len / total_len if total_len else 0.0
+    }
+
+
 if __name__ == '__main__':
     s1 = '中国的首都是北京'
     s2 = '北京是中国的首都'
     print(text_diff(s1, s2))
+    print(text_repeat(s1, s2))
