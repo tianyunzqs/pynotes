@@ -22,7 +22,7 @@ def gen_trie(path):
                 if w not in p:
                     p[w] = {}
                 p = p[w]
-            p[""] = ""
+            p[""] = word
 
     return trie
 
@@ -44,6 +44,45 @@ def is_word_in_trie(word, trie):
         return True
     else:
         return False
+
+
+def extract_words(text, trie, return_all=True):
+    """
+    在输入文本text中抽取trie中的词语
+    :param text: 输入文本
+    :param trie: 词典树
+    :param return_all: 是否返回所有在词典树中的词语（包含位置重叠）
+    :return: 词语及其下标
+    """
+    result = []
+    N = len(text)
+    i, j = 0, 0
+    p = trie
+    while i < N:
+        c = text[j]
+        if c in p:
+            p = p[c]
+            if '' in p:
+                if return_all:
+                    result.append((p[''], i, j + 1))
+                else:
+                    if len(p) == 1:
+                        result.append((p[''], i, j + 1))
+                        i = j
+                    else:
+                        if j + 1 >= N or text[j + 1] not in p:
+                            result.append((p[''], i, j + 1))
+                            i = j
+            j += 1
+            if j >= N:
+                i += 1
+                j = i
+                p = trie
+        else:
+            p = trie
+            i += 1
+            j = i
+    return result
 
 
 def get_word_from_trie(word, trie, default=None):
@@ -171,12 +210,16 @@ def print_trie_words(trie):
 
 
 if __name__ == '__main__':
-    tree = gen_trie('dict.txt')
+    tree = gen_trie('dict2.txt')
     print(tree)
     print(print_trie_words(tree))
 
     is_contain = is_word_in_trie('电钻', tree)
     print(is_contain)
+
+    text = "冲击钻头"
+    all_words = extract_words(text, tree, return_all=False)
+    print(all_words)
 
     # add_word_to_trie('电钻', tree)
     # print(tree)
@@ -192,8 +235,8 @@ if __name__ == '__main__':
     # print(tree)
     # print(print_trie_words(tree))
 
-    # word_value = get_word_from_trie('电钻', tree, default='未找到该词')
-    # print(word_value)
+    word_value = get_word_from_trie('电钻', tree, default='未找到该词')
+    print(word_value)
 
     # set_word_value_in_trie('木工钻', tree, 123)
     # print(tree)
